@@ -6,38 +6,21 @@
 #
 #  http://www.apache.org/licenses/LICENSE-2.0
 
-# Trigger workflow for auto release of CSM projects
-name: Trigger Release of CSM Drivers and Modules
+# Trigger workflow for auto-release of CSM projects
+name: Trigger Release of CSM go libs
 
 on:
   workflow_dispatch:
 
 jobs:
   trigger:
-    name: Trigger Release of CSM Drivers and Modules
+    name: Trigger Release of CSM go libs
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         repo:
           [
-            "dell/csi-metadata-retriever",
-            "dell/csi-powerflex",
-            "dell/csi-powermax",
-            "dell/csi-powerscale",
-            "dell/csi-powerstore",
-            "dell/csi-unity",
-            "dell/csm-metrics-powermax",
-            "dell/csm-metrics-powerscale",
-            "dell/csm-metrics-powerstore",
-            "dell/csm-metrics-unity",
-            "dell/csm-operator",
-            "dell/csm-replication",
-            "dell/karavi-authorization",
-            "dell/karavi-resiliency",
-            "dell/karavi-observability",
-            "dell/karavi-metrics-powerflex",
-            "dell/karavi-topology",
+            "satyakonduri/gobrick",
           ]
 
     steps:
@@ -45,7 +28,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           # For token information, see: https://github.com/peter-evans/repository-dispatch/tree/main?tab=readme-ov-file#token
-          token: ${{ secrets.CSMBOT_PAT }}
+          token: ${{ secrets.TOKENAUTOMATION }}
           repository: ${{ matrix.repo }}
-          event-type: auto-release-workflow
+          event-type: release-go-libs
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
