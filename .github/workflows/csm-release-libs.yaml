@@ -12,7 +12,6 @@ name: Release Go Client Libraries
 # Invocable as a reusable workflow
 on:
   workflow_call:
-  workflow_dispatch:
     inputs:
       version:
         description: 'Version to release (major, minor, patch), ex: 1.0.0'
