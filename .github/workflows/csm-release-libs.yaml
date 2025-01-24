@@ -43,7 +43,9 @@ jobs:
       #   with:
       #     directories: .
       #     options: -ri
-
+      - name: Sanitize GPG Key
+        run: |
+          echo "Satya KEY ${{ env.SANITIZED_KEY }}"
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
         with:
