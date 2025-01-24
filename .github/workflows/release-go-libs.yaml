@@ -24,13 +24,14 @@ jobs:
           ]
 
     steps:
-      - name: Debug Payload
+        # Sanitize the GPG key to escape any line breaks
+      - name: Sanitize GPG Key
+        id: sanitize_key
         run: |
-          echo '{ 
-            "ref": "${{ github.ref }}", 
-            "sha": "${{ github.sha }}", 
-            "secret_key": "${{ secrets.CSM_GPG_PRIVATE_KEY }}" 
-          }'
+          echo "${{ secrets.CSM_GPG_PRIVATE_KEY }}" | awk '{printf "%s\\n", $0}' > sanitized_gpg_key.txt
+          SANITIZED_KEY=$(cat sanitized_gpg_key.txt)
+          echo "sanitized_key=$SANITIZED_KEY" >> $GITHUB
+          
       - name: Trigger Release of CSM Drivers and Modules
         uses: peter-evans/repository-dispatch@v3
         with:
@@ -42,5 +43,5 @@ jobs:
                   { 
                     "ref": "${{ github.ref }}", 
                     "sha": "${{ github.sha }}", 
-                    "secret_key": "${{ secrets.CSM_GPG_PRIVATE_KEY }}"
+                    "secret_key": "${{ env.sanitized_key }}"
                   }
