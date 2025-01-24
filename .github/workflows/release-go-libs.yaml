@@ -45,5 +45,5 @@ jobs:
                   { 
                     "ref": "${{ github.ref }}", 
                     "sha": "${{ github.sha }}", 
-                    "secret_key": "${{ env.sanitized_key }}"
+                    "secret_key": "${{ env.SANITIZED_KEY }}"
                   }
