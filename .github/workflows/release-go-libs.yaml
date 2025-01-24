@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "${{ secrets.CSM_GPG_PRIVATE_KEY }}" | awk '{printf "%s\\n", $0}' > sanitized_gpg_key.txt
           SANITIZED_KEY=$(cat sanitized_gpg_key.txt)
-          echo "sanitized_key=$SANITIZED_KEY" >> $GITHUB
+          echo "sanitized_key=$SANITIZED_KEY" >> $GITHUB_ENV
           
       - name: Trigger Release of CSM Drivers and Modules
         uses: peter-evans/repository-dispatch@v3
