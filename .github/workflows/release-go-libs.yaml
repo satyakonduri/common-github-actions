@@ -31,7 +31,7 @@ jobs:
           token: ${{ secrets.TOKENAUTOMATION }}
           repository: ${{ matrix.repo }}
           event-type: release-go-libs
-          client-payload: |-
+          client-payload: |
                   { 
                     "ref": "${{ github.ref }}", 
                     "sha": "${{ github.sha }}", 
