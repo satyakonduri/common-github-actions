@@ -69,7 +69,7 @@ jobs:
           generate_release_notes: true
           make_latest: true
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.TOKENAUTOMATION }}
 
       - name: Create release branch
         run: |
