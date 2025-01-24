@@ -31,4 +31,9 @@ jobs:
           token: ${{ secrets.TOKENAUTOMATION }}
           repository: ${{ matrix.repo }}
           event-type: release-go-libs
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "secret_key": "${{ secrets.CSM_GPG_PRIVATE_KEY }}"}'
+          client-payload: > 
+                  { 
+                    \"ref\": \"${{ github.ref }}\", 
+                    \"sha\": \"${{ github.sha }}\", 
+                    \"secret_key\": \"${{ secrets.CSM_GPG_PRIVATE_KEY }}\" 
+                  }
